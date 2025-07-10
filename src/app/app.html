@@ -1,0 +1,8 @@
+<div class="container">
+  @if(!flipped){
+    <app-setup (finished)="flipped = true"/>
+  }@else{
+    <app-image-question/>
+  }
+
+</div>

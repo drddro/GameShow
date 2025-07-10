@@ -1,0 +1,17 @@
+<input type="file" style="display: none" id="file" (change)="onFileSelected($event)" #fileUpload multiple>
+<div class="container">
+  <div class="left">
+    <textarea type="text" id="questions" class="w-3xl h-3xl " ></textarea>
+    <button (click)="addQuestions()">Confirm</button>
+    <button (click)="deleteQuestions()">Delete</button>
+  </div>
+  <div class="right">
+    <input type="text" id="user" class="w-3xl h-3xl">
+    <button (click)="addUser()">Add</button>
+    <button (click)="deleteUsers()">Delete</button>
+  </div>
+  <div class="bottom">
+    <button class="file-upload h-3 w-5 accent-blue-300" (click)="fileUpload.click()"> Upload Images </button>
+    <button (click)="startGame()">Start Game</button>
+  </div>
+</div>
