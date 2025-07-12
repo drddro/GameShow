@@ -2,28 +2,28 @@
 
 <div class="w-screen h-screen flex flex-col">
   <!-- Top Half -->
-  <div class="flex h-1/2">
+  <div class="flex h-1/2 bg-blue-600/25">
     <!-- Left Box -->
     <div class="w-1/2 ">
-      <label for="questions" class="block font-bold">Questions:</label>
-      <textarea id="questions" class="w-full h-24 border border-gray-400"></textarea>
+      <label for="questions" class="block font-bold text-white">Questions:</label>
+      <textarea id="questions" class="w-full h-48 border border-gray-400 bg-white resize-none"></textarea>
       <div class="mt-2 flex gap-2">
-        <button (click)="addQuestions()" class="bg-blue-500 text-white px-2 py-1 rounded">Confirm</button>
+        <button (click)="addQuestions()" class="bg-green-500 text-white px-2 py-1 rounded">Confirm</button>
         <button (click)="deleteQuestions()" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
       </div>
     </div>
 
     <!-- Right Box -->
     <div class="w-1/2 ">
-      <label for="user" class="block font-bold">Username:</label>
-      <input type="text" id="user" class="w-full border border-gray-400" />
-      <div class="mt-2 flex gap-2">
-        <button (click)="addUser()" class="bg-blue-500 text-white px-2 py-1 rounded">Add</button>
+      <label for="user" class="block font-bold text-white">Username:</label>
+      <input type="text" id="user" class="w-full border border-gray-400 bg-white"/>
+      <div class="mt-2 flex gap-2 relative top-40">
+        <button (click)="addUser()" class="bg-green-500 text-white px-2 py-1 rounded">Add</button>
         <button (click)="deleteUsers()" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
       </div>
       <div class="flex flex-wrap gap-2">
         @for(user of this.userService.getUsers(); track $index){
-          <p class="text-2xl">{{user.name}}</p>
+          <p class="text-2xl text-white">{{user.name}}</p>
         }
       </div>
     </div>

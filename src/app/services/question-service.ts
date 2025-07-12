@@ -69,11 +69,25 @@ export class QuestionService {
       category: parts[3],
       is_picture: false
     }
-
   }
 
   clearQuestions() {
     this.questions = [];
+  }
+
+  getOrderedQuestions(): Map<String, Question[]> {
+    const output = new Map<String, Question[]>();
+    for(const question of this.questions){
+      if(!output.has(question.category)) {
+        output.set(question.category, [question]);
+      }else{
+        const arr = output.get(question.category);
+        if(!arr) continue;
+        arr.push(question);
+        output.set(question.category, arr);
+      }
+    }
+    return output;
   }
 
   isReady(): boolean {

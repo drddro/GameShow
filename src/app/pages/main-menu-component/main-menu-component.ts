@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {QuestionService} from '../../services/question-service';
+import {UserService} from '../../services/user-service';
 
 @Component({
   selector: 'app-main-menu-component',
@@ -7,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './main-menu-component.css'
 })
 export class MainMenuComponent {
+
+  constructor(protected questionService: QuestionService, protected userService: UserService) { }
+
 
 }
