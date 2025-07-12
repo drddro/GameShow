@@ -1,17 +1,32 @@
-<input type="file" style="display: none" id="file" (change)="onFileSelected($event)" #fileUpload multiple>
-<div class="container">
-  <div class="left">
-    <textarea type="text" id="questions" class="w-3xl h-3xl " ></textarea>
-    <button (click)="addQuestions()">Confirm</button>
-    <button (click)="deleteQuestions()">Delete</button>
+<input type="file" class="hidden" id="file" (change)="onFileSelected($event)" #fileUpload multiple>
+
+<div class="w-screen h-screen flex flex-col">
+  <!-- Top Half -->
+  <div class="flex h-1/2">
+    <!-- Left Box -->
+    <div class="w-1/2 ">
+      <label for="questions" class="block font-bold">Questions:</label>
+      <textarea id="questions" class="w-full h-24 border border-gray-400"></textarea>
+      <div class="mt-2 flex gap-2">
+        <button (click)="addQuestions()" class="bg-blue-500 text-white px-2 py-1 rounded">Confirm</button>
+        <button (click)="deleteQuestions()" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+      </div>
+    </div>
+
+    <!-- Right Box -->
+    <div class="w-1/2 ">
+      <label for="user" class="block font-bold">Username:</label>
+      <input type="text" id="user" class="w-full border border-gray-400" />
+      <div class="mt-2 flex gap-2">
+        <button (click)="addUser()" class="bg-blue-500 text-white px-2 py-1 rounded">Add</button>
+        <button (click)="deleteUsers()" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+      </div>
+    </div>
   </div>
-  <div class="right">
-    <input type="text" id="user" class="w-3xl h-3xl">
-    <button (click)="addUser()">Add</button>
-    <button (click)="deleteUsers()">Delete</button>
-  </div>
-  <div class="bottom">
-    <button class="file-upload h-3 w-5 accent-blue-300" (click)="fileUpload.click()"> Upload Images </button>
-    <button (click)="startGame()">Start Game</button>
+
+  <!-- Bottom Half -->
+  <div class="h-1/2 flex items-center justify-center gap-40">
+    <button class="bg-green-500 text-white px-4 py-2 rounded" (click)="fileUpload.click()">Upload Images</button>
+    <button class="bg-purple-500 text-white px-4 py-2 rounded" (click)="startGame()">Start Game</button>
   </div>
 </div>

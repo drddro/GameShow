@@ -18,14 +18,15 @@ export class Setup {
   }
 
   addQuestions(){
-    const element = this.getElement('question');
-    const questionsString = element?.innerText;
+    const element = this.getElement('questions') as HTMLTextAreaElement;
+    console.log(element);
+    const questionsString = element?.value;
     if(!questionsString) {
       alert("Fehler beim einlesen der Fragen")
       return
     }
-
     this.questionService.addQuestions(questionsString.split("\n"));
+    element.value = "";
   }
 
   deleteQuestions(){
@@ -33,13 +34,14 @@ export class Setup {
   }
 
   addUser(){
-    const element = this.getElement('user');
-    const userString = element?.innerText;
+    const element = this.getElement('user') as HTMLInputElement;
+    const userString = element?.value;
     if(!userString) {
       alert("Fehler beim einlesen des User")
       return
     }
     this.userService.addUser(userString);
+    element.value = "";
   }
 
   deleteUsers(){
