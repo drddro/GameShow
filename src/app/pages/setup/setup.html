@@ -21,6 +21,11 @@
         <button (click)="addUser()" class="bg-blue-500 text-white px-2 py-1 rounded">Add</button>
         <button (click)="deleteUsers()" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
       </div>
+      <div class="flex flex-wrap gap-2">
+        @for(user of this.userService.getUsers(); track $index){
+          <p class="text-2xl">{{user.name}}</p>
+        }
+      </div>
     </div>
   </div>
 

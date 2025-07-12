@@ -28,4 +28,8 @@ export class UserService {
   isReady(): boolean {
     return false;
   }
+
+  getUsers() {
+    return this.users;
+  }
 }

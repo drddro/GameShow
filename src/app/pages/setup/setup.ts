@@ -11,7 +11,7 @@ import {ImageService} from '../../services/image-service';
 })
 export class Setup {
   @Output() finished: EventEmitter<void> = new EventEmitter<void>();
-  constructor(private questionService: QuestionService, private userService: UserService, private pngService: ImageService) { }
+  constructor(private questionService: QuestionService, protected userService: UserService, private pngService: ImageService) { }
 
   getElement(ident: string){
     return document.getElementById(ident);
