@@ -4,7 +4,7 @@ import {Setup} from './pages/setup/setup';
 
 @Component({
   selector: 'app-root',
-  imports: [Setup, ImageQuestion],
+  imports: [Setup],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
