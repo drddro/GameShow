@@ -52,13 +52,15 @@ export class QuestionService {
   parseQuestionString(questionString: string): Question {
     const parts = questionString.split(":");
     const isPicture = parts[0].indexOf('$') === 0;
+    const isHint = parts[0].indexOf(';') >= 0;
     return{
       id: this.counter++,
-      question: isPicture ? parts[0].substring(1) : parts[0],
+      question: isPicture ? parts[0].substring(1) : isHint ? parts[0].split(';') : parts[0],
       answer: parts[1],
       points: parseInt(parts[2]),
       category: parts[3],
       is_picture: isPicture,
+      is_hint: isHint,
       is_answered: false,
     }
   }
@@ -84,5 +86,12 @@ export class QuestionService {
 
   isReady(): boolean {
     return this.questions.length >= 30;
+  }
+
+  getQuestionById(questionId: number) {
+    for(const question of this.questions) {
+      if(question.id === questionId) return question;
+    }
+    return null;
   }
 }
