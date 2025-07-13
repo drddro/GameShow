@@ -9,9 +9,7 @@
       Back
     </button>
     @if(this.showScoreSheat){
-      <div class="flex gap-4 relative"
-           [ngClass]="getRightShift()"
-      >
+      <div class="flex gap-6 relative right-[1/{{this.userService.getUsers().length}}]">
         @for(user of this.userService.getUsers(); track $index){
           <app-user-score-card-component [user]="user" [points]="this.question.points" (isAnswered)="this.navigateBack()"/>
         }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input} from '@angular/core';
-import {Question} from '../../../models/Question';
+import {Question} from '../../../../models/Question';
 import {QuestionViewer} from '../question-viewer';
 
 @Component({

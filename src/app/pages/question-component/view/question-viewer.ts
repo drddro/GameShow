@@ -1,4 +1,4 @@
-import {Question} from '../../models/Question';
+import {Question} from '../../../models/Question';
 import {EventEmitter} from '@angular/core';
 
 export interface QuestionViewer {

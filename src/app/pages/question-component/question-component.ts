@@ -7,15 +7,15 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {Question} from '../../models/Question';
-import {QuestionViewComponent} from '../../utils/view/question-view-component/question-view-component';
-import {HintQuestionViewComponent} from '../../utils/view/hint-question-view-component/hint-question-view-component';
-import {ImageQuestionViewComponent} from '../../utils/view/image-question-view-component/image-question-view-component';
-import {QuestionViewer} from '../../utils/view/question-viewer';
+import {QuestionViewComponent} from './view/question-view-component/question-view-component';
+import {HintQuestionViewComponent} from './view/hint-question-view-component/hint-question-view-component';
+import {ImageQuestionViewComponent} from './view/image-question-view-component/image-question-view-component';
+import {QuestionViewer} from './view/question-viewer';
 import {UserScoreCardComponent} from '../../utils/user-score-card-component/user-score-card-component';
 import {UserService} from '../../services/user-service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionService} from '../../services/question-service';
-import {NgClass, NgStyle} from '@angular/common';
+import {NgStyle} from '@angular/common';
 
 
 type QuestionComponentType = typeof QuestionViewComponent | typeof HintQuestionViewComponent | typeof ImageQuestionViewComponent;
@@ -26,7 +26,6 @@ type QuestionComponentType = typeof QuestionViewComponent | typeof HintQuestionV
   imports: [
     UserScoreCardComponent,
     NgStyle,
-    NgClass,
   ],
   templateUrl: './question-component.html',
   styleUrl: './question-component.css'
