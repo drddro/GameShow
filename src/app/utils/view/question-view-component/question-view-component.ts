@@ -20,6 +20,7 @@ export class QuestionViewComponent implements QuestionViewer{
 
   goBack(): void {
     this.indexer--;
+    this.isShowingAnswer.emit(false);
     if(this.indexer < 0){
       this.router.navigate(['/board']);
     }
@@ -28,13 +29,15 @@ export class QuestionViewComponent implements QuestionViewer{
 
   goForward(): void {
     this.indexer++;
-    if(this.indexer == 1){
+    if(this.indexer > 0){
       this.isShowingAnswer.emit(true);
     }
   }
 
   getDisplayText() {
-    if(this.indexer == 0) return this.question.question;
+    if(this.indexer == 0) {
+      return this.question.question;
+    }
     else{
       return this.question.answer;
     }

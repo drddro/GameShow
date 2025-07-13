@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {User} from '../../models/User';
 
 @Component({
@@ -11,12 +11,14 @@ export class UserScoreCardComponent {
 
   @Input() user!: User;
   @Input() points!: number;
+  @Output() isAnswered = new EventEmitter<boolean>();
 
   answeredCorrect(){
     this.user.points += this.points;
+    this.isAnswered.emit(true);
   };
 
-  answersWrong(){
+  answeredWrong(){
     this.user.points -= (this.points / 2);
   };
 
