@@ -1,3 +1,10 @@
-<div class="bg-yellow-200/75 min-w-50 min-h-9 border-2 border-black items-center justify-center" (click)="this.routeToQuestion()">
-  <p class="text-4xl text-center">{{this.question.points}}</p>
-</div>
+@if(!this.question.is_answered){
+  <div class="bg-yellow-200/75 min-w-50 min-h-9 border-2 border-black items-center justify-center" (click)="this.routeToQuestion()">
+    <p class="text-4xl text-center">{{this.question.points}}</p>
+  </div>
+}@else{
+  <div class="bg-gray-600/25 min-w-50 min-h-9 border-2 border-black items-center justify-center">
+    <p class="text-4xl text-center">{{this.question.points}}</p>
+  </div>
+}
+
