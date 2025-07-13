@@ -51,29 +51,35 @@ export class QuestionService {
 
   parseQuestionString(questionString: string): Question {
     const parts = questionString.split(":");
-    if(parts[0].indexOf('$') == 0){
-      return{
-        id: this.counter++,
-        question: parts[0].replace('$', ''),
-        answer: parts[1],
-        points: parseInt(parts[2]),
-        category: parts[3],
-        is_picture: true
-      }
-    }
-    return {
+    const isPicture = parts[0].indexOf('$') === 0;
+    return{
       id: this.counter++,
-      question: parts[0],
+      question: isPicture ? parts[0].substring(1) : parts[0],
       answer: parts[1],
       points: parseInt(parts[2]),
       category: parts[3],
-      is_picture: false
+      is_picture: isPicture,
+      is_answered: false,
     }
-
   }
 
   clearQuestions() {
     this.questions = [];
+  }
+
+  getOrderedQuestions(): Map<String, Question[]> {
+    const output = new Map<String, Question[]>();
+    for(const question of this.questions){
+      if(!output.has(question.category)) {
+        output.set(question.category, [question]);
+      }else{
+        const arr = output.get(question.category);
+        if(!arr) continue;
+        arr.push(question);
+        output.set(question.category, arr);
+      }
+    }
+    return output;
   }
 
   isReady(): boolean {

@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {QuestionService} from '../../services/question-service';
 import {UserService} from '../../services/user-service';
 import {ImageService} from '../../services/image-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-setup',
@@ -10,8 +11,10 @@ import {ImageService} from '../../services/image-service';
   styleUrl: './setup.css'
 })
 export class Setup {
-  @Output() finished: EventEmitter<void> = new EventEmitter<void>();
-  constructor(private questionService: QuestionService, private userService: UserService, private pngService: ImageService) { }
+  constructor(private questionService: QuestionService,
+              protected userService: UserService,
+              private pngService: ImageService,
+              private router: Router) { }
 
   getElement(ident: string){
     return document.getElementById(ident);
@@ -19,7 +22,6 @@ export class Setup {
 
   addQuestions(){
     const element = this.getElement('questions') as HTMLTextAreaElement;
-    console.log(element);
     const questionsString = element?.value;
     if(!questionsString) {
       alert("Fehler beim einlesen der Fragen")
@@ -49,8 +51,9 @@ export class Setup {
   }
 
   startGame(){
-    //if(this.questionService.isReady() && this.userService.isReady())
-    this.finished.emit();
+    if(this.questionService.isReady() && this.userService.isReady()) {
+      this.router.navigate(['/board']);
+    }
   }
 
   onFileSelected(event: Event) {

@@ -26,6 +26,10 @@ export class UserService {
   }
 
   isReady(): boolean {
-    return false;
+    return this.users.length >= 2;
+  }
+
+  getUsers() {
+    return this.users;
   }
 }
