@@ -1,8 +1,8 @@
 <div class="w-full h-full flex items-center justify-center">
-  @if(this.indexer === 0){
+  @if(this.indexer === 1){
     <img [src]="this.getPng()" alt="Error on loading image">
   }
-  @if(this.indexer === 1){
+  @if(this.indexer === 2){
     <p class="text-center text-2xl font-bold text-white">
       {{this.question.answer}}
   }

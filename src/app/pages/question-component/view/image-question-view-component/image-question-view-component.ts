@@ -21,13 +21,13 @@ export class ImageQuestionViewComponent implements QuestionViewer {
 
   goForward(): void {
       this.indexer++;
-      if(this.indexer === 1){
+      if(this.indexer === 2){
         this.isShowingAnswer.emit(true);
       }
   }
   goBack(): void {
       this.indexer--;
-      if(this.indexer === 0){
+      if(this.indexer <= 1){
         this.isShowingAnswer.emit(false);
       }
       if(this.indexer < 0){
