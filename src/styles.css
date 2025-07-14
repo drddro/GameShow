@@ -2,6 +2,11 @@
 
 @import "tailwindcss";
 
+*{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
 html, body {
   height: 100vh;
   margin: 0;

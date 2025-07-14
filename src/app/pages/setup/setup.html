@@ -1,23 +1,23 @@
 <input type="file" class="hidden" id="file" (change)="onFileSelected($event)" #fileUpload multiple>
 
-<div class="w-screen h-screen flex flex-col">
+<div class="w-screen h-screen flex flex-col bg-blue-600/25">
   <!-- Top Half -->
-  <div class="flex h-1/2 bg-blue-600/25">
+  <div class="flex h-1/2">
     <!-- Left Box -->
-    <div class="w-1/2 ">
-      <label for="questions" class="block font-bold text-white">Questions:</label>
-      <textarea id="questions" class="w-full h-48 border border-gray-400 bg-white resize-none"></textarea>
-      <div class="mt-2 flex gap-2">
+    <div class="w-1/2">
+      <label for="questions" class="text-2xl block font-bold text-white relative left-10 m-2">Questions:</label>
+      <textarea id="questions" class="w-8/9 h-48 border border-gray-400 bg-white resize-none relative left-10"></textarea>
+      <div class="mt-2 flex gap-2 relative left-10">
         <button (click)="addQuestions()" class="bg-green-500 text-white px-2 py-1 rounded">Confirm</button>
         <button (click)="deleteQuestions()" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
       </div>
     </div>
 
     <!-- Right Box -->
-    <div class="w-1/2 ">
-      <label for="user" class="block font-bold text-white">Username:</label>
-      <input type="text" id="user" class="w-full border border-gray-400 bg-white"/>
-      <div class="mt-2 flex gap-2 relative top-40">
+    <div class="w-1/2">
+      <label for="user" class="text-2xl block font-bold text-white relative left-10 m-2">Username:</label>
+      <input type="text" id="user" class="w-8/9 border border-gray-400 bg-white relative left-10"/>
+      <div class="mt-2 flex gap-2 relative top-40 left-10">
         <button (click)="addUser()" class="bg-green-500 text-white px-2 py-1 rounded">Add</button>
         <button (click)="deleteUsers()" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
       </div>

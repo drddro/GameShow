@@ -1,0 +1,24 @@
+<div class="w-full h-full flex flex-col align-center gap-4 bg-yellow-300/35">
+
+    <div class="min-w-full relative top-0 flex justify-center mt-1 gap-20">
+        @if(this.isEditMode) {
+            <input type="text" class="border border-gray-300 rounded p-2 bg-blue-400 text-white text-2xl" id="pointsInput"/>
+        }
+        <button class="bg-fuchsia-700 text-white w-30 h-15 absolute left-10 rounded-2xl" (click)="this.isEditMode = !this.isEditMode">{{this.isEditMode ? 'hide': 'show'}}</button>
+    </div>
+
+    <div class="flex items-center gap-20 absolute bottom-20 ">
+        @for (user of this.userService.getUsers(); track $index) {
+            <div class="flex flex-col items-center bg-blue-800/75 min-w-40 rounded-2xl h-30">
+                <p class="text text-white text-2xl font-bold top-2 relative">{{ user.name }}</p>
+                <p class="text text-white text-xl font-bold relative top-2">{{ user.points }} pts</p>
+                @if(this.isEditMode) {
+                    <div class="flex relative top-2">
+                        <button class="bg-red-500 text-white px-4 py-2 rounded w-22 m-2 text-center justify-center items-center" (click)="this.userService.addPoints(user, this.getUserInput() * -1)">Remove</button>
+                        <button class="bg-green-500 text-white px-4 py-2 rounded w-22 m-2 text-center justify-center items-center" (click)="this.userService.addPoints(user, this.getUserInput())"> Add </button>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { Question } from '../../models/Question';
+import { Question } from '../../../../models/Question';
 import {Router} from '@angular/router';
 import {NgClass} from '@angular/common';
 
