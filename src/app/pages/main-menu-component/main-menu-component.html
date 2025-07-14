@@ -1,11 +1,13 @@
-<div class="flex justify-between">
-  @for(category of this.questionService.getOrderedQuestions().keys(); track $index){
-    <div class="h-full w-1/6 bg-blue-600/25 flex flex-col justify-center items-center border-2 border-l-stone-600 border-r-stone-600">
-      <p class="text-4xl text-bold text-stone-300 font-extrabold border-b-2">{{category}}</p>
-      @for(question of this.questionService.getOrderedQuestions().get(category); track $index){
-        <app-question-card-component class="m-12" [question]="question"/>
-      }
-    </div>
-
-  }
+<div class="w-full h-full flex flex-col">
+  <div class="flex justify-between w-full h-3/4">
+    @for(category of this.questionService.getOrderedQuestions().keys(); track $index){
+      <div class="h-full w-1/6 bg-blue-600/25 flex flex-col justify-center items-center border-2 border-l-stone-600 border-r-stone-600">
+        <p class="text-4xl text-bold text-stone-300 font-extrabold border-b-2">{{category}}</p>
+        @for(question of this.questionService.getOrderedQuestions().get(category); track $index){
+          <app-question-card-component class="m-12" [question]="question"/>
+        }
+      </div>     
+    }
+  </div>
+  <app-admin-component/>
 </div>
