@@ -1,10 +1,10 @@
-@if(!this.question.is_answered){
-  <div class="bg-yellow-200/75 min-w-50 min-h-9 border-2 border-black items-center justify-center" (click)="this.routeToQuestion()">
-    <p class="text-4xl text-center">{{this.question.points}}</p>
-  </div>
-}@else{
-  <div class="bg-gray-600/25 min-w-50 min-h-9 border-2 border-black items-center justify-center">
-    <p class="text-4xl text-center">{{this.question.points}}</p>
-  </div>
-}
-
+<div
+  class="flex min-w-50 min-h-20 border-2 border-black items-center justify-center"
+  [ngClass]="{
+    'bg-yellow-200/75 cursor-pointer': !question.is_answered,
+    'bg-gray-600/25': question.is_answered
+  }"
+  (click)="!question.is_answered && routeToQuestion()"
+>
+  <p class="text-4xl text-center">{{ question.points }}</p>
+</div>

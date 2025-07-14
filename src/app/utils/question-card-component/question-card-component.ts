@@ -1,10 +1,13 @@
 import {Component, Input} from '@angular/core';
 import { Question } from '../../models/Question';
 import {Router} from '@angular/router';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-question-card-component',
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './question-card-component.html',
   styleUrl: './question-card-component.css'
 })

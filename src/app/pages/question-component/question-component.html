@@ -1,1 +1,25 @@
-<p>question-component works!</p>
+<div class="w-full h-full bg-blue-600/25 flex flex-col">
+  <div class="w-full h-5/6">
+    <ng-container #dynamicContainer></ng-container>
+  </div>
+  <div class="w-full h-1/6 flex justify-between items-center px-64">
+    <button
+      class="bg-red-500 text-white px-4 py-2 rounded h-10 w-35"
+      (click)="handleNavigation(false)">
+      Back
+    </button>
+    @if(this.showScoreSheat){
+      <div class="flex gap-6 relative right-[1/{{this.userService.getUsers().length}}]">
+        @for(user of this.userService.getUsers(); track $index){
+          <app-user-score-card-component [user]="user" [points]="this.question.points" (isAnswered)="this.navigateBack()"/>
+        }
+      </div>
+    }
+    <button
+      [ngStyle]="this.showScoreSheat ? {display: 'none'} : {}"
+      class="bg-green-500 text-white px-4 py-2 rounded h-10 w-35"
+      (click)="handleNavigation(true)">
+      Next
+    </button>
+  </div>
+</div>
