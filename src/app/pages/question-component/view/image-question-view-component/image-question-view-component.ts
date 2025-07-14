@@ -12,8 +12,9 @@ import {ImageService} from '../../../../services/image-service';
 })
 export class ImageQuestionViewComponent implements QuestionViewer {
 
+
   @Input() question!: Question;
-  indexer= 0;
+  indexer = 0;
   isShowingAnswer = new EventEmitter<boolean>();
 
   constructor(private router: Router, protected imageService: ImageService){}
@@ -34,5 +35,12 @@ export class ImageQuestionViewComponent implements QuestionViewer {
       }
   }
 
+  getPng() {
+    if(this.question.is_picture && this.question.question) {
+      const pngName = this.question.question as string;
+      return this.imageService.getImgByName(pngName)?.url || '';
+    }
+    return "";
+  }
 
 }
