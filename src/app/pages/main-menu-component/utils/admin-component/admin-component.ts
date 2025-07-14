@@ -10,14 +10,16 @@ import { UserService } from '../../../../services/user-service';
 export class AdminComponent {
 
 
-  isEditMode = true;
+  isEditMode = false;
   constructor(protected userService: UserService) { }
-  
+
   getUserInput(): number {
     const input = document.getElementById('pointsInput') as HTMLInputElement;
     if(input && input.value) {
       try{
-        return parseInt(input.value);
+        let retVal = parseInt(input.value);
+        if(isNaN(retVal)) throw new Error();
+        return retVal;
       }
       catch(e){
         alert("Please enter a valid number.");
