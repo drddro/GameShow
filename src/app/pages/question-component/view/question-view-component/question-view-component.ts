@@ -34,9 +34,9 @@ export class QuestionViewComponent implements QuestionViewer{
     }
   }
 
-  getDisplayText() {
+  protected getDisplayText(): string {
     if(this.indexer == 1) {
-      return this.question.question;
+      return this.question.question as unknown as string;
     }
     else if (this.indexer == 2) {
       return this.question.answer;

@@ -1,1 +1,7 @@
-<p>hint-question-view-component works!</p>
+<div class="flex flex-col justify-center align-center w-full h-full">
+    @for(string of this.getDisplayText().split('-'); track $index) {
+      <p class="text-5xl text-white font-bold text-center min-w-full">
+        {{string}} <br><br>
+      </p>
+    }
+</div>

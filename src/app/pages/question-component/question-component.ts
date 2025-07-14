@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ComponentRef,
+  inject,
   Input, OnDestroy, OnInit,
+  Type,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -33,7 +35,7 @@ type QuestionComponentType = typeof QuestionViewComponent | typeof HintQuestionV
 
 export class QuestionComponent implements OnInit, AfterViewInit, OnDestroy{
   @Input() question!: Question;
-  @ViewChild('dynamicContainer', { read: ViewContainerRef }) container!: ViewContainerRef;
+  @ViewChild('dynamicContainer', { read: ViewContainerRef }) container: ViewContainerRef = inject(ViewContainerRef);
   private currentComponent: ComponentRef<QuestionViewer> | null = null;
   protected showScoreSheat = false;
 
@@ -46,7 +48,7 @@ export class QuestionComponent implements OnInit, AfterViewInit, OnDestroy{
     }else if(this.question.is_picture){
       questionType = 2;
     }
-
+    console.log("Loading question component of type: " + questionType);
     this.loadComponent(questionType)
   }
 
@@ -68,23 +70,27 @@ export class QuestionComponent implements OnInit, AfterViewInit, OnDestroy{
     if (this.currentComponent) {
       this.currentComponent.destroy();
     }
+      const componentClasses: { [key: number]: QuestionComponentType } = {
+        0: QuestionViewComponent,
+        1: HintQuestionViewComponent,
+        2: ImageQuestionViewComponent
+      };
 
-    const componentClasses: { [key: number]: QuestionComponentType } = {
-      0: QuestionViewComponent,
-      1: HintQuestionViewComponent,
-      2: ImageQuestionViewComponent
-    };
+      try{
+        const componentClass: Type<QuestionViewer> = componentClasses[questionType];
+        this.currentComponent = this.container.createComponent(componentClass);
 
-    const componentClass = componentClasses[questionType];
-    this.currentComponent = this.container.createComponent(componentClass);
+        // Set up any necessary inputs
+        this.currentComponent.instance.question = this.question;
 
-    // Set up any necessary inputs
-    this.currentComponent.instance.question = this.question;
-
-    this.currentComponent.instance.isShowingAnswer.subscribe(revealedAnswer =>{
-      this.showScoreSheat = revealedAnswer;
-    })
-  }
+        this.currentComponent.instance.isShowingAnswer.subscribe(revealedAnswer =>{
+          this.showScoreSheat = revealedAnswer;
+        })
+      }catch (e) {
+        console.error('Error loading component:', e);
+        this.currentComponent = null;
+      }
+    }
 
   handleNavigation(forward: boolean) {
     if(forward) this.currentComponent?.instance.goForward();
@@ -95,8 +101,5 @@ export class QuestionComponent implements OnInit, AfterViewInit, OnDestroy{
     this.question.is_answered = true;
     this.router.navigate(['/board']);
   }
-
-  getRightShift() {
-    return `right-1/${this.userService.getUsers().length}`
-  }
 }
+
