@@ -16,15 +16,9 @@ export class AdminComponent {
   getUserInput(): number {
     const input = document.getElementById('pointsInput') as HTMLInputElement;
     if(input && input.value) {
-      try{
         let retVal = parseInt(input.value);
-        if(isNaN(retVal)) throw new Error();
+        if(isNaN(retVal)) return 0;
         return retVal;
-      }
-      catch(e){
-        alert("Please enter a valid number.");
-        return 0;
-      }
     }
     console.error("User input element not found or empty.");
     return 0;
