@@ -13,7 +13,7 @@ import {QuestionViewComponent} from './view/question-view-component/question-vie
 import {HintQuestionViewComponent} from './view/hint-question-view-component/hint-question-view-component';
 import {ImageQuestionViewComponent} from './view/image-question-view-component/image-question-view-component';
 import {QuestionViewer} from './view/question-viewer';
-import {UserScoreCardComponent} from '../../utils/user-score-card-component/user-score-card-component';
+import {UserScoreCardComponent} from './utils/user-score-card-component/user-score-card-component';
 import {UserService} from '../../services/user-service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionService} from '../../services/question-service';

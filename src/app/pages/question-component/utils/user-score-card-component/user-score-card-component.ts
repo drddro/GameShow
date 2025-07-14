@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {User} from '../../models/User';
+import { User } from '../../../../models/User';
+import { UserService } from '../../../../services/user-service';
 
 @Component({
   selector: 'app-user-score-card-component',
@@ -13,13 +14,15 @@ export class UserScoreCardComponent {
   @Input() points!: number;
   @Output() isAnswered = new EventEmitter<boolean>();
 
+  constructor(private userService: UserService) {}
+
   answeredCorrect(){
-    this.user.points += this.points;
+    this.userService.answeredQuestion(this.user, true, this.points);
     this.isAnswered.emit(true);
   };
 
   answeredWrong(){
-    this.user.points -= (this.points / 2);
+    this.userService.answeredQuestion(this.user, false, this.points);
   };
 
 }

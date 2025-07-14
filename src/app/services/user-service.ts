@@ -32,4 +32,20 @@ export class UserService {
   getUsers() {
     return this.users;
   }
+
+  answeredQuestion(user: User, correct: boolean, points: number) {
+    const index = this.users.indexOf(user);
+    if(index < 0) return;
+    if(correct) {
+      this.users[index].points += points;
+    } else {
+      this.users[index].points -= (points / 2);
+    }
+  }
+
+  addPoints(user: User, points: number) {
+    const index = this.users.indexOf(user);
+    if(index < 0) return;
+    this.users[index].points += points;
+  }
 }

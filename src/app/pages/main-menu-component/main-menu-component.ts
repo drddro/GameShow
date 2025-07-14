@@ -8,7 +8,7 @@ import { AdminComponent } from "./utils/admin-component/admin-component";
   selector: 'app-main-menu-component',
   imports: [
     QuestionCardComponent,
-    AdminComponent
+    AdminComponent,
 ],
   templateUrl: './main-menu-component.html',
   styleUrl: './main-menu-component.css'
