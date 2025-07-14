@@ -29,17 +29,18 @@ export class QuestionViewComponent implements QuestionViewer{
 
   goForward(): void {
     this.indexer++;
-    if(this.indexer > 0){
+    if(this.indexer > 1){
       this.isShowingAnswer.emit(true);
     }
   }
 
-  getDisplayText() {
-    if(this.indexer == 0) {
-      return this.question.question;
+  protected getDisplayText(): string {
+    if(this.indexer == 1) {
+      return this.question.question as unknown as string;
     }
-    else{
+    else if (this.indexer == 2) {
       return this.question.answer;
     }
+    return "";
   }
 }
