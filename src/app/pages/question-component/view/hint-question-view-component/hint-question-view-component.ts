@@ -24,6 +24,10 @@ export class HintQuestionViewComponent implements QuestionViewer {
     }else{
       this.isShowingAnswer.emit(false);
     }
+    if(this.indexer > this.question.question.length + 1) {
+      this.question.is_answered = true;
+      this.router.navigate(['/board']);
+    }
   }
 
   goBack(): void {

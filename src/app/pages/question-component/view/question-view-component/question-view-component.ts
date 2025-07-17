@@ -32,6 +32,10 @@ export class QuestionViewComponent implements QuestionViewer{
     if(this.indexer > 1){
       this.isShowingAnswer.emit(true);
     }
+    if(this.indexer > 2){
+      this.question.is_answered = true;
+      this.router.navigate(['/board']);
+    }
   }
 
   protected getDisplayText(): string {
